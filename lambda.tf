@@ -3,8 +3,8 @@ resource "aws_lambda_function" "scrape_limits" {
   handler          = "lambda.scrape_limits"
   role             = aws_iam_role.aws_limit_checker.arn
   runtime          = "python3.7"
-  filename         = "code/lambda.zip"
-  source_code_hash = filebase64sha256("code/lambda.zip")
+  filename         = "${path.module}/code/lambda.zip"
+  source_code_hash = filebase64sha256("${path.module}/code/lambda.zip")
   timeout          = 900
   environment {
     variables = {
