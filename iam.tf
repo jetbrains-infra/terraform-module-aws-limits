@@ -114,3 +114,8 @@ resource "aws_iam_role_policy_attachment" "aws_limit_checker_policy_to_role" {
   policy_arn = aws_iam_policy.aws_limit_checker.arn
   role       = aws_iam_role.aws_limit_checker.name
 }
+
+resource "aws_iam_role_policy_attachment" "this" {
+  role       = aws_iam_role.aws_limit_checker.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
