@@ -106,7 +106,7 @@ class Alarm:
 
     def __init__(self, limit: AwsLimit, type: str, dimensions: list, alarm_actions: List[str] = []):
         self.alarm_name = f'{limit.service.service_name} {limit.name} {type}'
-        self.metric_name = f'{limit.service.service_name} {limit.name}'
+        self.metric_name = f'{limit.service.service_name}-{limit.name}'
         self.alarm_actions = alarm_actions
         self.period = 3600  # 1h
         self.evaluation_period_sec = 4  # 4h
