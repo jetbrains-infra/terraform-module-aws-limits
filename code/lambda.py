@@ -105,8 +105,8 @@ class Alarm:
     dimensions: list
 
     def __init__(self, limit: AwsLimit, type: str, dimensions: list, alarm_actions: List[str] = []):
-        self.alarm_name = f'{limit.service.service_name}-{limit.name}-{type}'
-        self.metric_name = f'{limit.service.service_name}-{limit.name}'
+        self.alarm_name = f'{limit.service.service_name} {limit.name} {type}'
+        self.metric_name = f'{limit.service.service_name} {limit.name}'
         self.alarm_actions = alarm_actions
         self.period = 3600  # 1h
         self.evaluation_period_sec = 4  # 4h
@@ -114,7 +114,7 @@ class Alarm:
 
         resource_id = self.get_resource_id_from_dimensions()
         if resource_id is not None:
-            self.alarm_name += resource_id
+            self.alarm_name += ' ' + resource_id
 
         if type == 'warn':
             self.threshold = limit.get_limit() * (limit.warn_percent or limit.def_warning_threshold / 100)
