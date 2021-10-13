@@ -1,5 +1,5 @@
 variable "ALARM_ACTIONS" {
-  type    = "list"
+  type    = list(string)
   default = []
 }
 
